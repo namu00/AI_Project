@@ -315,8 +315,16 @@ class LeNet5:
                             np.random.randn(200,100)
         self.params['b8'] = np.zeros(100)
         self.params['W9'] = weight_init_std * \
-                            np.random.randn(100,10)
-        self.params['b9'] = np.zeros(10)
+                            np.random.randn(100,50)
+        self.params['b9'] = np.zeros(50)
+        self.params['W10'] = weight_init_std * \
+                            np.random.randn(50,25)
+        self.params['b10'] = np.zeros(25)
+        self.params['W11'] = weight_init_std * \
+                            np.random.randn(25,10)
+        self.params['b11'] = np.zeros(10)
+        
+
 
 
         # 계층 생성
@@ -342,16 +350,24 @@ class LeNet5:
         self.layers['Affine6'] = Affine(self.params['W6'], self.params['b6'])
 
         self.layers['ReLU_4'] = ELU()
-        # F7 : Affine 계층 + 활성화 함수는 softmax  84 -> 200
+        # F7 : Affine 계층 84 -> 200
         self.layers['Affine7'] = Affine(self.params['W7'], self.params['b7'])
 
         self.layers['ReLU_5'] = ELU()
-        # F7 : Affine 계층 + 활성화 함수는 softmax  200 -> 100
+        # F8 : Affine 계층 200 -> 100
         self.layers['Affine8'] = Affine(self.params['W8'], self.params['b8'])
 
         self.layers['ReLU_6'] = ELU()
-        # F7 : Affine 계층 + 활성화 함수는 softmax  100 -> 10
+        # F9 : Affine 계층 100 -> 50
         self.layers['Affine9'] = Affine(self.params['W9'], self.params['b9'])
+
+        self.layers['ReLU_7'] = ELU()
+        # F9 : Affine 계층 50 -> 25
+        self.layers['Affine10'] = Affine(self.params['W10'], self.params['b10'])
+
+        self.layers['ReLU_8'] = ELU()
+        # F9 : Affine 계층 25 -> 10
+        self.layers['Affine11'] = Affine(self.params['W11'], self.params['b11'])
         self.last_layer = SoftmaxWithLoss()
 
 
@@ -422,6 +438,8 @@ class LeNet5:
         grads['W7'], grads['b7'] = self.layers['Affine7'].dW, self.layers['Affine7'].db
         grads['W8'], grads['b8'] = self.layers['Affine8'].dW, self.layers['Affine8'].db
         grads['W9'], grads['b9'] = self.layers['Affine9'].dW, self.layers['Affine9'].db
+        grads['W10'], grads['b10'] = self.layers['Affine10'].dW, self.layers['Affine10'].db
+        grads['W11'], grads['b11'] = self.layers['Affine11'].dW, self.layers['Affine11'].db
 
         return grads
 
@@ -440,7 +458,7 @@ class LeNet5:
 
             j = 1
 
-        for i, key in enumerate(['Conv1', 'Conv3', 'Conv5', 'Affine6', 'Affine7']):
+        for i, key in enumerate(['Conv1', 'Conv3', 'Conv5', 'Affine6', 'Affine7', 'Affine8', 'Affine9', 'Affine10', 'Affine11']):
             self.layers[key].W = self.params['W' + str(i + j)]
             self.layers[key].b = self.params['b' + str(i + j)]
             if j < 3:
