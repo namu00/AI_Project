@@ -362,11 +362,11 @@ class LeNet5:
         self.layers['Affine9'] = Affine(self.params['W9'], self.params['b9'])
 
         self.layers['ReLU_7'] = ELU()
-        # F9 : Affine 계층 50 -> 25
+        # F10 : Affine 계층 50 -> 25
         self.layers['Affine10'] = Affine(self.params['W10'], self.params['b10'])
 
         self.layers['ReLU_8'] = ELU()
-        # F9 : Affine 계층 25 -> 10
+        # F11 : Affine 계층 25 -> 10
         self.layers['Affine11'] = Affine(self.params['W11'], self.params['b11'])
         self.last_layer = SoftmaxWithLoss()
 
