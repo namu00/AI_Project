@@ -12,7 +12,7 @@ def img_augment(x_train, t_train, batch_size):
         img = Image.fromarray(img.astype(np.uint8))          #이미지 저장을 위해 넘파이 배열타입을 정수형으로 변환
         img = img.transpose(Image.Transpose.FLIP_LEFT_RIGHT) #이미지 좌/우 반전
         #좌/우 반전만 Augmenting하는 이유:
-        #90/180/270도 회전하여 학습한 경, 레퍼런스 입력모델 대비 출력값 향상이 아~~~~주 미미함
+        #90/180/270도 회전하여 학습한 결과, 레퍼런스 입력모델 대비 출력값 향상이 아~~~~주 미미함
 
         img = np.array(img, dtype=np.float32)           #Numpy배열로 변경하기 위한 형변환, uint8 --> float32
         img = img/255.0                                 #Normalize 실행
