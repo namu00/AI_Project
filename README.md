@@ -1,5 +1,4 @@
-# AI_Project
-## Fashion MNIST & Cifar10 Training Project
+# AI_Project(Fashion_MNIST & Cifar10)
 > # Rules
 >    1. Do Not Use __ANY AI FRAMEWORK__!
 >    2. Design AI-Network whatever ANN/CNN/DNN 
