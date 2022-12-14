@@ -29,10 +29,11 @@ optimizer = Adam(lr=0.001)
 
 iters_num = 10000
 train_size = x_train.shape[0]
-batch_size = 100
+batch_size = 200
 learning_rate = 0.1
 
 train_loss_list = []
+test_loss_list = []
 train_acc_list = []
 test_acc_list = []
 
@@ -43,9 +44,9 @@ for i in range(iters_num):
     batch_mask = np.random.choice(train_size, batch_size)
     x_batch = x_train[batch_mask]
     t_batch = t_train[batch_mask]
+
     (x_batch, t_batch) = img_augment(x_batch,t_batch,batch_size)
 
-    
     # 기울기 계산
     grads = network.gradient(x_batch, t_batch) # 오차역전파
     params = network.params
@@ -59,8 +60,13 @@ for i in range(iters_num):
     if i % iter_per_epoch == 0:
         train_acc = network.accuracy(x_train, t_train)
         test_acc = network.accuracy(x_test, t_test)
+        train_loss = network.loss(x_train,t_train)
+        test_loss = network.loss(x_test,t_test)
+
         train_acc_list.append(train_acc)
         test_acc_list.append(test_acc)
+        train_loss_list.append(train_loss)
+        test_loss_list.append(test_loss)
         print('iter: (%5d:%5d) train acc: %3.4f test acc: %3.4f' % (i, iters_num, train_acc, test_acc))
         
         path_dir = './ckpt'
@@ -73,10 +79,20 @@ for i in range(iters_num):
 # 그래프 그리기
 markers = {'train': 'o', 'test': 's'}
 x = np.arange(len(train_acc_list))
+
+plt.subplot(2,2,1)
 plt.plot(x, train_acc_list, label='train acc')
 plt.plot(x, test_acc_list, label='test acc', linestyle='--')
 plt.xlabel("epochs")
 plt.ylabel("accuracy")
+plt.ylim(0, 1.0)
+plt.legend(loc='lower right')
+
+plt.subplot(2,2,2)
+plt.plot(x, train_acc_list, label='train loss')
+plt.plot(x, test_acc_list, label='test loss', linestyle='--')
+plt.xlabel("epochs")
+plt.ylabel("loss")
 plt.ylim(0, 1.0)
 plt.legend(loc='lower right')
 plt.show()

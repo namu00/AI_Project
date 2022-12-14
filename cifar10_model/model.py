@@ -351,23 +351,23 @@ class LeNet5:
                                            conv_param_3['stride'], conv_param_3['pad'])
 
         self.layers['ReLU_3'] = ELU()
-        # F6 : Affine 계층 120 -> 100 
+        # F6 : Affine 계층 400 -> 400 
         self.layers['Affine6'] = Affine(self.params['W6'], self.params['b6'])
 
         self.layers['ReLU_4'] = ELU()
-        # F7 : Affine 계층 100 -> 100
+        # F7 : Affine 계층 400 -> 400
         self.layers['Affine7'] = Affine(self.params['W7'], self.params['b7'])
 
         self.layers['ReLU_5'] = ELU()
-        # F8 : Affine 계층 100 -> 100
+        # F8 : Affine 계층 400 -> 300
         self.layers['Affine8'] = Affine(self.params['W8'], self.params['b8'])
 
         self.layers['ReLU_6'] = ELU()
-        # F9 : Affine 계층 100 -> 100
+        # F9 : Affine 계층 300 -> 200
         self.layers['Affine9'] = Affine(self.params['W9'], self.params['b9'])
 
         self.layers['ReLU_7'] = ELU()
-        # F10 : Affine 계층 100 -> 100
+        # F10 : Affine 계층 200 -> 100
         self.layers['Affine10'] = Affine(self.params['W10'], self.params['b10'])
 
         self.layers['ReLU_8'] = ELU()
