@@ -1,0 +1,14 @@
+#Python Cache Files
+__pycache__
+
+#Cifar10 Incidental Files
+cifar-10*
+cifar10.pkl
+
+#Fashion_MNIST Incidental Files
+t10k-*
+train-*
+fashion_mnist.pkl
+
+#Result Plot Images
+*.png
