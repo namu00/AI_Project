@@ -17,7 +17,7 @@ network = LeNet5(input_dim=(3, 32, 32),
 
 # 매개변수 가져오기
 path_dir = './ckpt'
-file_name = "lenet5_params.pkl"
+file_name = "lenet5_cifar10_params.pkl"
 network.load_params(os.path.join(path_dir, file_name))
 print("Parameter Load Complete!")
 

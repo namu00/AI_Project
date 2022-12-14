@@ -1,1 +1,1 @@
-from cifar10 import *
+from .cifar10 import *

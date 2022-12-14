@@ -27,7 +27,7 @@ network = LeNet5(input_dim=(3, 32, 32),
 optimizer = Adam(lr=0.001)
 
 path_dir = './ckpt' #pickle파일 저장 위치
-file_name = "lenet5_params.pkl" #pickle파일 이름
+file_name = "lenet5_cifar10_params.pkl" #pickle파일 이름
 
 iters_num = 10000
 train_size = x_train.shape[0]

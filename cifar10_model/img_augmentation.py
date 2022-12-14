@@ -1,7 +1,9 @@
+import os, sys
+sys.path.append(os.pardir)
+import numpy as np
+import platform
 from PIL import Image
 from dataset.cifar10 import *
-import numpy as np
-import os, platform
 
 def img_augment(x_train, t_train, batch_size):
     train_set = x_train
@@ -50,11 +52,11 @@ if __name__ == "__main__": #함수 테스트
     for i in range(test_range):
         print("Converting Image... Index: %5d"% (i))
         img1 = convert_img(t_set[i])
-        img2 = convert_img(t_set[(i+test_range)])
+        img2 = convert_img(t_set[(i+50000)])
         img2 = img2.transpose(Image.Transpose.FLIP_LEFT_RIGHT)
 
         label1 = np.argmax(t_label[i])
-        label2 = np.argmax(t_label[(i + test_range)])
+        label2 = np.argmax(t_label[(i + 50000)])
 
         if img1 != img2 :
             print("Image Dosen't match!")
