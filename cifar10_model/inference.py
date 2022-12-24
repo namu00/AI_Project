@@ -7,7 +7,11 @@ import matplotlib.pyplot as plt
 from dataset.cifar10 import load_cifar10
 from model import *
 # 데이터 읽기
+os.chdir("./dataset")
 (x_train, t_train), (x_test, t_test) = load_cifar10(normalize=True, flatten=False, one_hot_label=True)
+pwd = os.path.dirname(os.path.abspath(__file__))
+os.chdir(pwd)
+
 
 network = LeNet5(input_dim=(3, 32, 32),
                   conv_param_1={'filter_num': 10, 'filter_size': 5, 'pad': 0, 'stride': 1},

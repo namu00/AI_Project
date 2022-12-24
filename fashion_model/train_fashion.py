@@ -30,7 +30,7 @@ optimizer = Adam(lr=0.001)
 iters_num = 10000
 train_size = x_train.shape[0]
 batch_size = 200
-learning_rate = 0.1
+learning_rate = 0.001
 
 train_loss_list = []
 test_loss_list = []
@@ -54,13 +54,11 @@ for i in range(iters_num):
     # 갱신
     optimizer.update(params, grads)
     
-    loss = network.loss(x_batch, t_batch)
-    train_loss_list.append(loss)
     
     if i % iter_per_epoch == 0:
         train_acc = network.accuracy(x_train, t_train)
         test_acc = network.accuracy(x_test, t_test)
-        train_loss = network.loss(x_train,t_train)
+        train_loss = network.loss(x_batch,t_batch)
         test_loss = network.loss(x_test,t_test)
 
         train_acc_list.append(train_acc)
@@ -80,7 +78,7 @@ for i in range(iters_num):
 markers = {'train': 'o', 'test': 's'}
 x = np.arange(len(train_acc_list))
 
-plt.subplot(2,2,1)
+plt.subplot(1,2,1)
 plt.plot(x, train_acc_list, label='train acc')
 plt.plot(x, test_acc_list, label='test acc', linestyle='--')
 plt.xlabel("epochs")
@@ -88,11 +86,11 @@ plt.ylabel("accuracy")
 plt.ylim(0, 1.0)
 plt.legend(loc='lower right')
 
-plt.subplot(2,2,2)
-plt.plot(x, train_acc_list, label='train loss')
-plt.plot(x, test_acc_list, label='test loss', linestyle='--')
+plt.subplot(1,2,2)
+plt.plot(x, train_loss_list, label='train loss')
+plt.plot(x, test_loss_list, label='test loss', linestyle='--')
 plt.xlabel("epochs")
 plt.ylabel("loss")
-plt.ylim(0, 1.0)
+plt.ylim(0, 5.0)
 plt.legend(loc='lower right')
 plt.show()
